@@ -155,21 +155,21 @@ if args.count > 1 {
             }
         default:
             print("Usage: fastcards <action> <arguments>")
-            print("> list                          - List available decks")
-            print("> createdeck <name>             - Create a new flashcard deck")
             print("> addcard <deck> <front> <back> - Add card to deck")
             print("> amount                        - Print amount of flashcards due")
+            print("> createdeck <name>             - Create a new flashcard deck")
+            print("> import <file.tsv>             - Import TSV file containing flashcards")
+            print("> list                          - List available decks")
             print("> study                         - Study due flashcards")
             print("> xp                            - Print XP amount")
-            print("> import <file.tsv>             - Import TSV file containing flashcards")
     }
 } else {
     print("Usage: fastcards <action> <arguments>")
-    print("> list              - List available decks")
-    print("> createdeck <name> - Create a new flashcard deck")
     print("> addcard <deck> <front> <back> - Add card to deck")
     print("> amount                        - Print amount of flashcards due")
+    print("> createdeck <name>             - Create a new flashcard deck")
+    print("> import <file.tsv>             - Import TSV file containing flashcards")
+    print("> list                          - List available decks")
     print("> study                         - Study due flashcards")
     print("> xp                            - Print XP amount")
-    print("> import <file.tsv>             - Import TSV file containing flashcards")
 }
