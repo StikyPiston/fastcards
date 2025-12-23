@@ -71,15 +71,23 @@ if args.count > 1 {
                 print(" Error adding card to deck: \(error)")
                 exit(1)
             }
+        case "amount":
+            let decks = DeckStore.loadAllDecks()
+            let due   = decks.flatMap { $0.cards }
+                .filter { Scheduler.isDue($0) }
+                .count
+            print("󰘸 Flashcards due: \(due)")
         default:
             print("Usage: fastcards <action> <arguments>")
             print("> list                          - List available decks")
             print("> createdeck <name>             - Create a new flashcard deck")
             print("> addcard <deck> <front> <back> - Add card to deck")
+            print("> amount                        - Print amount of flashcards due")
     }
 } else {
     print("Usage: fastcards <action> <arguments>")
     print("> list              - List available decks")
     print("> createdeck <name> - Create a new flashcard deck")
     print("> addcard <deck> <front> <back> - Add card to deck")
+    print("> amount                        - Print amount of flashcards due")
 }
