@@ -134,6 +134,7 @@ if args.count > 1 {
             print("> addcard <deck> <front> <back> - Add card to deck")
             print("> amount                        - Print amount of flashcards due")
             print("> study                         - Study due flashcards")
+            print("> xp                            - Print XP amount")
     }
 } else {
     print("Usage: fastcards <action> <arguments>")
@@ -142,4 +143,5 @@ if args.count > 1 {
     print("> addcard <deck> <front> <back> - Add card to deck")
     print("> amount                        - Print amount of flashcards due")
     print("> study                         - Study due flashcards")
+    print("> xp                            - Print XP amount")
 }
