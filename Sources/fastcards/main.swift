@@ -66,7 +66,7 @@ if args.count > 1 {
 
                 deck.cards.append(card)
                 try DeckStore.save(deck: deck)
-                print("󱇿 Added card to \(deck)")
+                print("󱇿 Added card to \(deck.name)")
             } catch {
                 print(" Error adding card to deck: \(error)")
                 exit(1)
