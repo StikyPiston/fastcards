@@ -139,7 +139,7 @@ if args.count > 1 {
 
             XPStore.save(xp)
 
-            print("\n Session complete, studied \(queue.count) cards. \(xpEarnedThisSession) XP earned this session.")
+            print("\n Session complete, studied \(queue.count) cards.  \(xpEarnedThisSession) XP earned this session.")
         case "xp":
             print(" XP: \(XPStore.load())")
         case "import":
