@@ -78,6 +78,10 @@ if args.count > 1 {
                 .count
             print("󰘸 Flashcards due: \(due)")
         case "study":
+            var xp                  = XPStore.load()
+            var xpEarnedThisSession = 0
+            var studied = 0
+
             var decks = DeckStore.loadAllDecks()
 
             var queue: [(deckIdx: Int, cardIdx: Int)] = []
@@ -118,13 +122,23 @@ if args.count > 1 {
                 }
 
                 decks[item.deckIdx].cards[item.cardIdx] = updated
+
+                studied += 1
+
+                if studied % 5 == 0 {
+                    xp                  += 20
+                    xpEarnedThisSession += 20
+                    print(" Earned +20 XP! (Studied \(studied) cards)")
+                }
             }
 
             for deck in decks {
                 try? DeckStore.save(deck: deck)
             }
 
-            print("\n Session complete, studied \(queue.count) cards")
+            XPStore.save(xp)
+
+            print("\n Session complete, studied \(queue.count) cards. \(xpEarnedThisSession) XP earned this session.")
         case "xp":
             print(" XP: \(XPStore.load())")
         default:
