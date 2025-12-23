@@ -125,6 +125,8 @@ if args.count > 1 {
             }
 
             print("\n Session complete, studied \(queue.count) cards")
+        case "xp":
+            print(" XP: \(XPStore.load())")
         default:
             print("Usage: fastcards <action> <arguments>")
             print("> list                          - List available decks")
