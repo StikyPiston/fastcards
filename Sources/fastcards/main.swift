@@ -141,6 +141,17 @@ if args.count > 1 {
             print("\n Session complete, studied \(queue.count) cards. \(xpEarnedThisSession) XP earned this session.")
         case "xp":
             print(" XP: \(XPStore.load())")
+        case "import":
+            guard args.count > 2 else {
+                print("Usage: fastcards import <file.tsv>")
+                exit(1)
+            }
+
+            do {
+                try TSVImporter.import(path: args[2])
+            } catch {
+                print(" Failed to import file: \(error)")
+            }
         default:
             print("Usage: fastcards <action> <arguments>")
             print("> list                          - List available decks")
