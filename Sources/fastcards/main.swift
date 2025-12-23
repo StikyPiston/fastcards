@@ -160,6 +160,7 @@ if args.count > 1 {
             print("> amount                        - Print amount of flashcards due")
             print("> study                         - Study due flashcards")
             print("> xp                            - Print XP amount")
+            print("> import <file.tsv>             - Import TSV file containing flashcards")
     }
 } else {
     print("Usage: fastcards <action> <arguments>")
@@ -169,4 +170,5 @@ if args.count > 1 {
     print("> amount                        - Print amount of flashcards due")
     print("> study                         - Study due flashcards")
     print("> xp                            - Print XP amount")
+    print("> import <file.tsv>             - Import TSV file containing flashcards")
 }
