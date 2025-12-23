@@ -77,12 +77,61 @@ if args.count > 1 {
                 .filter { Scheduler.isDue($0) }
                 .count
             print("󰘸 Flashcards due: \(due)")
+        case "study":
+            var decks = DeckStore.loadAllDecks()
+
+            var queue: [(deckIdx: Int, cardIdx: Int)] = []
+
+            for (dIdx, deck) in decks.enumerated() {
+                for (cIdx, card) in deck.cards.enumerated() {
+                    if Scheduler.isDue(card) {
+                        queue.append((dIdx, cIdx))
+                    }
+                }
+            }
+
+            if queue.isEmpty {
+                print("󱁖 No cards due today!")
+                exit(0)
+            }
+
+            for (index, item) in queue.enumerated() {
+                let card = decks[item.deckIdx].cards[item.cardIdx]
+
+                print("\n--------------------------------")
+                print("Card \(index + 1) / \(queue.count)")
+                print("\nFront: \(card.front)")
+                print("\nPress [Enter] to reveal...")
+                _ = readLine()
+
+                print("\nBack: \(card.back)")
+                print("\nDid you get it right? (y/n): ", terminator: "")
+                let answer = readLine()?.lowercased()
+
+                var updated = card
+                updated.lastReviewed = Date()
+
+                if answer == "y" {
+                    updated.state = min(card.state + 1, Scheduler.maxState)
+                } else {
+                    updated.state = 1
+                }
+
+                decks[item.deckIdx].cards[item.cardIdx] = updated
+            }
+
+            for deck in decks {
+                try? DeckStore.save(deck: deck)
+            }
+
+            print(" Session complete, studied \(queue.count) cards")
         default:
             print("Usage: fastcards <action> <arguments>")
             print("> list                          - List available decks")
             print("> createdeck <name>             - Create a new flashcard deck")
             print("> addcard <deck> <front> <back> - Add card to deck")
             print("> amount                        - Print amount of flashcards due")
+            print("> study                         - Study due flashcards")
     }
 } else {
     print("Usage: fastcards <action> <arguments>")
@@ -90,4 +139,5 @@ if args.count > 1 {
     print("> createdeck <name> - Create a new flashcard deck")
     print("> addcard <deck> <front> <back> - Add card to deck")
     print("> amount                        - Print amount of flashcards due")
+    print("> study                         - Study due flashcards")
 }

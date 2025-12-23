@@ -44,4 +44,28 @@ struct DeckStore {
             try? load(name: $0)
         }
     }
+
+    static func dueStudyItems() -> [(Deck, [StudyItem])] {
+        let decks  = loadAllDecks()
+        var result: [(Deck, [StudyItem])] = []
+
+        for (deckIndex, deck) in decks.enumerated() {
+            var items: [StudyItem] = []
+
+            for (cardIndex, card) in deck.cards.enumerated() {
+                if Scheduler.isDue(card) {
+                    items.append(StudyItem(
+                        deckIndex: deckIndex,
+                        cardIndex: cardIndex
+                    ))
+                }
+            }
+
+            if !items.isEmpty {
+                result.append((deck, items))
+            }
+        }
+
+        return result
+    }
 }
