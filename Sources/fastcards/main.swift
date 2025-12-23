@@ -56,9 +56,9 @@ if args.count > 1 {
                 exit(1)
             }
 
-            let deckName = args[3]
-            let front    = args[4]
-            let back     = args[5]
+            let deckName = args[2]
+            let front    = args[3]
+            let back     = args[4]
 
             do {
                 var deck = try DeckStore.load(name: deckName)
