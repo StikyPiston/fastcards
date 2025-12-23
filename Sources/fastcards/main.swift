@@ -52,6 +52,11 @@ if args.count > 1 {
             }
         default:
             print("Usage: fastcards <action> <arguments>")
-            print("> list - Lists available decks")
+            print("> list              - List available decks")
+            print("> createdeck <name> - Create a new flashcard deck")
     }
+} else {
+    print("Usage: fastcards <action> <arguments>")
+    print("> list              - List available decks")
+    print("> createdeck <name> - Create a new flashcard deck")
 }
