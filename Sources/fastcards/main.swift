@@ -27,6 +27,7 @@ if args.count > 1 {
             if decks.isEmpty {
                 print("󰘸 No decks found")
             } else {
+                print("󰘸 Flashcard decks:")
                 decks.forEach{ print($0) }
             }
         case "createdeck":
