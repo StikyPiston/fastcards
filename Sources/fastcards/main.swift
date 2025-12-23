@@ -99,6 +99,10 @@ if args.count > 1 {
                 print("󱁖 No cards due today!")
                 exit(0)
             }
+            
+            print("󰘸 To study: \(queue.count)")
+            print("> Press [Enter] to start!")
+            _ = readLine()
 
             for (index, item) in queue.enumerated() {
                 let card = decks[item.deckIdx].cards[item.cardIdx]
