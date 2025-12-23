@@ -124,7 +124,7 @@ if args.count > 1 {
                 try? DeckStore.save(deck: deck)
             }
 
-            print(" Session complete, studied \(queue.count) cards")
+            print("\n Session complete, studied \(queue.count) cards")
         default:
             print("Usage: fastcards <action> <arguments>")
             print("> list                          - List available decks")
