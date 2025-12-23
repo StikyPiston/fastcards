@@ -38,4 +38,10 @@ struct DeckStore {
                 .map    { $0.deletingPathExtension().lastPathComponent }
                 .sorted()
     }
+
+    static func loadAllDecks() -> [Deck] {
+        listDecks().compactMap {
+            try? load(name: $0)
+        }
+    }
 }
