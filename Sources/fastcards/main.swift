@@ -50,13 +50,36 @@ if args.count > 1 {
             } catch {
                 print(" Failed to create deck: \(error)")
             }
+        case "addcard":
+            guard args.count > 4 else {
+                print("Usage: fastcards addcard <deckname> <front> <back>")
+                exit(1)
+            }
+
+            let deckName = args[3]
+            let front    = args[4]
+            let back     = args[5]
+
+            do {
+                var deck = try DeckStore.load(name: deckName)
+                let card = Card(front: front, back: back)
+
+                deck.cards.append(card)
+                try DeckStore.save(deck: deck)
+                print("󱇿 Added card to \(deck)")
+            } catch {
+                print(" Error adding card to deck: \(error)")
+                exit(1)
+            }
         default:
             print("Usage: fastcards <action> <arguments>")
-            print("> list              - List available decks")
-            print("> createdeck <name> - Create a new flashcard deck")
+            print("> list                          - List available decks")
+            print("> createdeck <name>             - Create a new flashcard deck")
+            print("> addcard <deck> <front> <back> - Add card to deck")
     }
 } else {
     print("Usage: fastcards <action> <arguments>")
     print("> list              - List available decks")
     print("> createdeck <name> - Create a new flashcard deck")
+    print("> addcard <deck> <front> <back> - Add card to deck")
 }
