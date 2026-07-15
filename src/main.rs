@@ -1,5 +1,7 @@
 use clap::{Parser, Subcommand};
 
+mod models;
+
 static VERSION: &str = env!("CARGO_PKG_VERSION");
 
 #[derive(Parser)]
