@@ -4,6 +4,8 @@ mod models;
 mod scheduler;
 mod storage;
 
+mod list_cmd;
+
 static VERSION: &str = env!("CARGO_PKG_VERSION");
 
 #[derive(Parser)]
@@ -63,7 +65,7 @@ fn main() {
         },
         Commands::Create { name } => todo!(),
         Commands::Import { path } => todo!(),
-        Commands::List {} => todo!(),
+        Commands::List {} => list_cmd::list(),
         Commands::Study { deck } => todo!(),
     }
 }
