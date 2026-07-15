@@ -14,7 +14,7 @@ fn base_dir() -> PathBuf {
         .map(|p| p.to_string_lossy().into_owned())
         .unwrap_or_default();
 
-    PathBuf::from(home).join("fastcards")
+    PathBuf::from(home).join(".fastcards")
 }
 
 pub fn decks_dir() -> PathBuf {
@@ -36,7 +36,7 @@ pub fn ensure_dirs() {
 }
 
 fn deck_path(name: String) -> PathBuf {
-    decks_dir().join(name + ".json")
+    decks_dir().join(name)
 }
 
 fn xp_path() -> PathBuf {
