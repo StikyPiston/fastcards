@@ -4,6 +4,7 @@ mod models;
 mod scheduler;
 mod storage;
 
+mod archive_list_cmd;
 mod list_cmd;
 
 static VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -60,7 +61,7 @@ fn main() {
         Commands::Amount {} => todo!(),
         Commands::Archive { command } => match command {
             ArchiveCommands::Add { deck } => todo!(),
-            ArchiveCommands::List {} => todo!(),
+            ArchiveCommands::List {} => archive_list_cmd::list(),
             ArchiveCommands::Remove { deck } => todo!(),
         },
         Commands::Create { name } => todo!(),
