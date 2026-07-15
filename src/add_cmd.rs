@@ -1,11 +1,25 @@
 use crate::{
-    models::Card,
+    models::{Card, Deck},
     storage::{load_deck, save_deck},
 };
+use std::process::exit;
 use uuid::Uuid;
 
 pub fn add(deck: String, front: String, back: String) {
-    let mut d = load_deck(deck);
+    let (dx, err) = load_deck(deck.clone());
+    let mut d: Deck;
+    if err {
+        println!("Deck {deck} not found");
+        exit(1);
+    }
+    match dx {
+        Some(dx) => d = dx,
+        None => {
+            println!("Deck {deck} not found");
+            exit(1);
+        }
+    }
+
     let card = Card {
         id: Uuid::new_v4(),
         front: front,

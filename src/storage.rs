@@ -52,11 +52,15 @@ pub fn save_deck(deck: &Deck) -> bool {
     }
 }
 
-pub fn load_deck(name: String) -> Deck {
-    read_to_string(deck_path(name))
+pub fn load_deck(name: String) -> (Option<Deck>, bool) {
+    let deck: Option<Deck> = read_to_string(deck_path(name))
         .ok()
-        .and_then(|s| serde_json::from_str(&s).ok())
-        .unwrap()
+        .and_then(|s| serde_json::from_str(&s).ok());
+
+    match deck {
+        Some(deck) => (Some(deck), false),
+        None => (None, true),
+    }
 }
 
 pub fn list_deck_names() -> Vec<String> {

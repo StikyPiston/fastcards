@@ -1,4 +1,7 @@
+use std::process::exit;
+
 use crate::{
+    models::Deck,
     scheduler::is_due,
     storage::{list_deck_names, load_deck},
 };
@@ -11,7 +14,20 @@ pub fn list() {
     }
 
     for name in names {
-        let deck = load_deck(name.clone());
+        let (d, err) = load_deck(name.clone());
+        let deck: Deck;
+        if err {
+            println!("Failed to load decks");
+            exit(1);
+        }
+        match d {
+            Some(d) => deck = d,
+            None => {
+                println!("Failed to load decks");
+                exit(1);
+            }
+        }
+
         let total = deck.cards.len();
 
         let mut due = 0;
@@ -22,6 +38,9 @@ pub fn list() {
             }
         }
 
-        println!("{}: {total} cards ({due} due)", name.trim_end_matches(".json"))
+        println!(
+            "{}: {total} cards ({due} due)",
+            name.trim_end_matches(".json")
+        )
     }
 }

@@ -5,6 +5,7 @@ mod scheduler;
 mod storage;
 
 mod add_cmd;
+mod amount_cmd;
 mod archive_list_cmd;
 mod list_cmd;
 
@@ -28,7 +29,7 @@ enum Commands {
         back: String,
     },
     /// Print the amount of cards currently due
-    Amount {},
+    Amount { deck: Option<String> },
     /// Manage the Deck Archive
     Archive {
         #[command(subcommand)]
@@ -61,7 +62,7 @@ fn main() {
         Commands::Add { deck, front, back } => {
             add_cmd::add(deck.to_string(), front.to_string(), back.to_string())
         }
-        Commands::Amount {} => todo!(),
+        Commands::Amount { deck } => amount_cmd::amount(deck.clone()),
         Commands::Archive { command } => match command {
             ArchiveCommands::Add { deck } => todo!(),
             ArchiveCommands::List {} => archive_list_cmd::list(),
