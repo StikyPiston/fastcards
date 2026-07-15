@@ -22,6 +22,6 @@ pub fn list() {
             }
         }
 
-        println!("{name}: {total} cards ({due} due)")
+        println!("{}: {total} cards ({due} due)", name.trim_end_matches(".json"))
     }
 }
