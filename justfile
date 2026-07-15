@@ -1,5 +1,5 @@
 build:
-	pkgx go build
+    nix build .#fastcards
 
 run:
-	pkgx go run .
+    cargo run
