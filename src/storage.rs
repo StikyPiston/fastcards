@@ -43,12 +43,12 @@ fn xp_path() -> PathBuf {
     data_dir().join("xp.json")
 }
 
-pub fn save_deck(deck: &Deck) {
+pub fn save_deck(deck: &Deck) -> bool {
     ensure_dirs();
 
     match serde_json::to_string_pretty(deck) {
-        Ok(json) => write(deck_path(deck.name.clone()), json).unwrap(),
-        Err(_) => panic!("Failed to save deck"),
+        Ok(json) => write(deck_path(deck.name.clone() + ".json"), json).is_ok(),
+        Err(_) => false,
     }
 }
 

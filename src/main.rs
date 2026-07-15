@@ -4,6 +4,7 @@ mod models;
 mod scheduler;
 mod storage;
 
+mod add_cmd;
 mod archive_list_cmd;
 mod list_cmd;
 
@@ -57,7 +58,9 @@ fn main() {
     let cli = Cli::parse();
 
     match &cli.command {
-        Commands::Add { deck, front, back } => todo!(),
+        Commands::Add { deck, front, back } => {
+            add_cmd::add(deck.to_string(), front.to_string(), back.to_string())
+        }
         Commands::Amount {} => todo!(),
         Commands::Archive { command } => match command {
             ArchiveCommands::Add { deck } => todo!(),
