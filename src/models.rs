@@ -17,3 +17,8 @@ pub struct Deck {
     pub name: String,
     pub cards: Vec<Card>,
 }
+
+#[derive(Deserialize, Serialize)]
+pub struct Xp {
+    pub xp: u32,
+}

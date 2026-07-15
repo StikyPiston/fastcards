@@ -2,6 +2,7 @@ use clap::{Parser, Subcommand};
 
 mod models;
 mod scheduler;
+mod storage;
 
 static VERSION: &str = env!("CARGO_PKG_VERSION");
 
