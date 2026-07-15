@@ -1,5 +1,5 @@
 use crate::models::Card;
-use chrono::{DateTime, FixedOffset, Utc};
+use chrono::{DateTime, Days, FixedOffset, Utc};
 
 fn interval(state: u16) -> u16 {
     match state {
@@ -12,7 +12,12 @@ fn interval(state: u16) -> u16 {
 
 pub fn is_due(card: Card) -> bool {
     match card.last_reviewed {
-        Some(last_reviewed) => false,
+        Some(last_reviewed) => {
+            let next = last_reviewed.checked_add_days(Days::new(1));
+            let now: DateTime<FixedOffset> = Utc::now().into();
+
+            next > Some(now)
+        }
         None => true,
     }
 }
