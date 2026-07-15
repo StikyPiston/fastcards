@@ -506,6 +506,7 @@ dependencies = [
  "ratatui",
  "serde",
  "serde_json",
+ "uuid",
 ]
 
 [[package]]
@@ -1694,6 +1695,7 @@ dependencies = [
  "atomic",
  "getrandom 0.4.3",
  "js-sys",
+ "serde_core",
  "wasm-bindgen",
 ]
 
