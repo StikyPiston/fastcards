@@ -8,6 +8,7 @@ mod add_cmd;
 mod amount_cmd;
 mod archive_add_cmd;
 mod archive_list_cmd;
+mod archive_remove_cmd;
 mod create_cmd;
 mod import_cmd;
 mod list_cmd;
@@ -72,7 +73,7 @@ fn main() {
         Commands::Archive { command } => match command {
             ArchiveCommands::Add { deck } => archive_add_cmd::add(deck.clone()),
             ArchiveCommands::List {} => archive_list_cmd::list(),
-            ArchiveCommands::Remove { deck } => todo!(),
+            ArchiveCommands::Remove { deck } => archive_remove_cmd::remove(deck.clone()),
         },
         Commands::Create { name } => create_cmd::create(name.clone()),
         Commands::Import { path } => import_cmd::import(path.clone()),
