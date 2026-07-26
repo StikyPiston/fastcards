@@ -13,10 +13,10 @@ fn interval(state: u16) -> u16 {
 pub fn is_due(card: Card) -> bool {
     match card.last_reviewed {
         Some(last_reviewed) => {
-            let next = last_reviewed.checked_add_days(Days::new(1));
+            let next = last_reviewed.checked_add_days(Days::new(interval(card.state).into()));
             let now: DateTime<FixedOffset> = Utc::now().into();
 
-            next > Some(now)
+            next <= Some(now)
         }
         None => true,
     }
