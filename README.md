@@ -1,5 +1,7 @@
 # Fastcards
 
+![preview of fastcards. the front of the cards says "What is love?", and the back says "Baby don't hurt me"](assets/preview.png)
+
 **Fastcards** is a CLI-based spaced repetition flashcard study tool written in Rust!
 
 ## Installation
