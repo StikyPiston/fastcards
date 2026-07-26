@@ -7,6 +7,7 @@ mod storage;
 mod add_cmd;
 mod amount_cmd;
 mod archive_list_cmd;
+mod create_cmd;
 mod list_cmd;
 
 static VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -68,7 +69,7 @@ fn main() {
             ArchiveCommands::List {} => archive_list_cmd::list(),
             ArchiveCommands::Remove { deck } => todo!(),
         },
-        Commands::Create { name } => todo!(),
+        Commands::Create { name } => create_cmd::create(name.clone()),
         Commands::Import { path } => todo!(),
         Commands::List {} => list_cmd::list(),
         Commands::Study { deck } => todo!(),
