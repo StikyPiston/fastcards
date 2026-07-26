@@ -8,6 +8,7 @@ mod add_cmd;
 mod amount_cmd;
 mod archive_list_cmd;
 mod create_cmd;
+mod import_cmd;
 mod list_cmd;
 mod xp_cmd;
 
@@ -73,7 +74,7 @@ fn main() {
             ArchiveCommands::Remove { deck } => todo!(),
         },
         Commands::Create { name } => create_cmd::create(name.clone()),
-        Commands::Import { path } => todo!(),
+        Commands::Import { path } => import_cmd::import(path.clone()),
         Commands::List {} => list_cmd::list(),
         Commands::Study { deck } => todo!(),
         Commands::Xp {} => xp_cmd::xp(),

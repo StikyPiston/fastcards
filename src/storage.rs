@@ -102,7 +102,7 @@ pub fn list_archived_deck_names() -> Vec<String> {
 }
 
 pub fn create_deck(name: String) -> String {
-    let path = deck_path(name.clone());
+    let path = deck_path(name.clone() + ".json");
 
     if !path.exists() {
         let deck = Deck {
