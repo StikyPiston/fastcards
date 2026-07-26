@@ -1,5 +1,5 @@
 {
-  description = "fastcards devshell and package";
+  description = "rust devshell and package, created by scaffolder";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
@@ -12,37 +12,30 @@
         pkgs = import nixpkgs { inherit system; };
       in {
         devShells.default = pkgs.mkShell {
-          name = "fastcards-devshell";
+          name = "rust-devshell";
 
           packages = with pkgs; [
-            go
-            gopls
-            gotools
-            delve
+            cargo
+            rustc
+            rustfmt
+            rust-analyzer
+            clippy
+            pkg-config
           ];
         };
 
-        packages.fastcards = pkgs.buildGoModule {
-          pname = "fastcards";
-          version = "2026.04.28-a";
+        packages.fastcards = pkgs.rustPlatform.buildRustPackage {
+          name = "fastcards";
+          version = "2.0.0";
 
-          src = self;
+          src = ./.;
 
-          vendorHash = "sha256-psfVdzWz3jU+QEliVA2dPY5nZDy2HMFJ0B9XP25jjxU=";
-
-          subPackages = [ "." ];
-          ldflags = [ "-s" "-w" ];
-
-          meta = with pkgs.lib; {
-            description = "A minimal to-do list program with a few amenities";
-            license = licenses.mit;
-            platforms = platforms.all;
-          };
+          cargoLock.lockFile = ./Cargo.lock;
         };
 
         apps.fastcards = {
           type = "app";
-          program = "${self.packages.${system}.fastcards}/bin/fastcards";
+          program = "${self.packages.${pkgs.stdenv.hostPlatform.system}.fastcards}/bin/fastcards";
         };
       });
 }

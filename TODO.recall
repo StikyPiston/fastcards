@@ -1,0 +1,37 @@
+[
+  {
+    "name": "archive add",
+    "prio": 1,
+    "state": 2,
+    "id": 0,
+    "project": "cli"
+  },
+  {
+    "name": "archive remove",
+    "prio": 1,
+    "state": 2,
+    "id": 1,
+    "project": "cli"
+  },
+  {
+    "name": "import",
+    "prio": 2,
+    "state": 2,
+    "id": 2,
+    "project": "cli"
+  },
+  {
+    "name": "study",
+    "prio": 3,
+    "state": 2,
+    "id": 3,
+    "project": "cli"
+  },
+  {
+    "name": "xp",
+    "prio": 1,
+    "state": 2,
+    "id": 4,
+    "project": "cli"
+  }
+]
