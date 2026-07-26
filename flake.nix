@@ -4,13 +4,27 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
+    naersk = {
+      url = "github:nix-community/naersk";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      naersk,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = import nixpkgs { inherit system; };
-      in {
+
+        naersk' = pkgs.callPackage naersk { };
+      in
+      {
         devShells.default = pkgs.mkShell {
           name = "rust-devshell";
 
@@ -24,18 +38,14 @@
           ];
         };
 
-        packages.fastcards = pkgs.rustPlatform.buildRustPackage {
-          name = "fastcards";
-          version = "2.0.0";
-
+        packages.fastcards = naersk'.buildPackage {
           src = ./.;
-
-          cargoLock.lockFile = ./Cargo.lock;
         };
 
         apps.fastcards = {
           type = "app";
           program = "${self.packages.${pkgs.stdenv.hostPlatform.system}.fastcards}/bin/fastcards";
         };
-      });
+      }
+    );
 }
