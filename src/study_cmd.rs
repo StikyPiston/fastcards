@@ -40,12 +40,13 @@ pub fn study(deck: Option<String>) {
     let mut answered = 0;
     let mut incorrect: Vec<String> = Vec::new();
 
+    let mut due: Vec<(usize, Card)> = Vec::new();
     for mut d in decks.clone() {
-        let due: Vec<(usize, Card)> = d
+        due = d
             .cards
             .iter()
             .enumerate()
-            .filter(|(_, c)| is_due(c.clone().clone()))
+            .filter(|(_, c)| is_due((**c).clone()))
             .map(|(i, c)| (i, c.clone()))
             .collect();
 
@@ -85,7 +86,7 @@ pub fn study(deck: Option<String>) {
         }
     }
 
-    if !decks.is_empty() {
+    if !due.is_empty() {
         xp += 100;
         save_xp(xp);
         println!(" +100 XP! Finished all due cards");
