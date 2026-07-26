@@ -23,7 +23,7 @@
   {
     "name": "study",
     "prio": 3,
-    "state": 1,
+    "state": 2,
     "id": 3,
     "project": "cli"
   },
