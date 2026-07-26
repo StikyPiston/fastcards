@@ -6,6 +6,7 @@ mod storage;
 
 mod add_cmd;
 mod amount_cmd;
+mod archive_add_cmd;
 mod archive_list_cmd;
 mod create_cmd;
 mod import_cmd;
@@ -69,7 +70,7 @@ fn main() {
         }
         Commands::Amount { deck } => amount_cmd::amount(deck.clone()),
         Commands::Archive { command } => match command {
-            ArchiveCommands::Add { deck } => todo!(),
+            ArchiveCommands::Add { deck } => archive_add_cmd::add(deck.clone()),
             ArchiveCommands::List {} => archive_list_cmd::list(),
             ArchiveCommands::Remove { deck } => todo!(),
         },

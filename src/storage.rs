@@ -35,7 +35,7 @@ pub fn ensure_dirs() {
     create_dir_all(data_dir()).unwrap();
 }
 
-fn deck_path(name: String) -> PathBuf {
+pub fn deck_path(name: String) -> PathBuf {
     decks_dir().join(name)
 }
 
