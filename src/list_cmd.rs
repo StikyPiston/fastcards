@@ -15,7 +15,7 @@ pub fn list() {
 
     for name in names {
         let (d, err) = load_deck(name.clone());
-        
+
         if err {
             println!("Failed to load decks");
             exit(1);
