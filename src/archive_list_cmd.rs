@@ -1,7 +1,4 @@
-use crate::{
-    scheduler::is_due,
-    storage::{list_archived_deck_names, load_deck},
-};
+use crate::storage::list_archived_deck_names;
 
 pub fn list() {
     let names = list_archived_deck_names();
