@@ -43,11 +43,12 @@ To add flashcards, this is the step you'll most likely want to take.
 You'll need a `.tsv` file with your flashcards in it, conforming to the following format:
 
 ```tsv
-Deck\tFront\tBack
+Deck    Front    Back
 ```
 
 Each flashcard should be on a separate line.<br/>
 You can write your flashcards in any spreadsheet tool, such as LibreOffice Calc, and save it as a `.tsv` file.
+> column 1 is the deck name, column 2 is the front of the card, column 3 is the back of the card.
 
 Then, run the following to import the flashcards.
 
