@@ -1,7 +1,7 @@
 use std::process::exit;
 
 use crate::{
-    models::{Deck, Card},
+    models::{Card, Deck},
     scheduler::{is_due, promote, reset},
     storage::{list_deck_names, load_deck, load_xp, save_deck, save_xp},
     tui,
@@ -41,7 +41,10 @@ pub fn study(deck: Option<String>) {
     let mut incorrect: Vec<String> = Vec::new();
 
     for mut d in decks.clone() {
-        let due: Vec<(usize, Card)> = d.cards.iter().enumerate()
+        let due: Vec<(usize, Card)> = d
+            .cards
+            .iter()
+            .enumerate()
             .filter(|(_, c)| is_due(c.clone().clone()))
             .map(|(i, c)| (i, c.clone()))
             .collect();

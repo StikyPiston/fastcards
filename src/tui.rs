@@ -1,10 +1,10 @@
 use ratatui::{
-    DefaultTerminal, Frame,
     crossterm::event::{self, Event, KeyCode, KeyEventKind},
     layout::{Constraint, Direction, Layout},
     style::{Color, Style, Stylize},
     text::Line,
     widgets::{Block, BorderType, Borders, Paragraph},
+    DefaultTerminal, Frame,
 };
 
 pub fn run(
