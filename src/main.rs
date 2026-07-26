@@ -9,6 +9,7 @@ mod amount_cmd;
 mod archive_list_cmd;
 mod create_cmd;
 mod list_cmd;
+mod xp_cmd;
 
 static VERSION: &str = env!("CARGO_PKG_VERSION");
 
@@ -44,6 +45,8 @@ enum Commands {
     List,
     /// Study due cards
     Study { deck: Option<String> },
+    /// Show XP amount
+    Xp,
 }
 
 #[derive(Subcommand)]
@@ -73,5 +76,6 @@ fn main() {
         Commands::Import { path } => todo!(),
         Commands::List {} => list_cmd::list(),
         Commands::Study { deck } => todo!(),
+        Commands::Xp {} => xp_cmd::xp(),
     }
 }
