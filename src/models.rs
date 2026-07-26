@@ -2,7 +2,7 @@ use chrono::{DateTime, FixedOffset};
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Card {
     pub id: Uuid,
     pub front: String,
@@ -11,7 +11,7 @@ pub struct Card {
     pub last_reviewed: Option<DateTime<FixedOffset>>,
 }
 
-#[derive(Deserialize, Serialize)]
+#[derive(Deserialize, Serialize, Clone)]
 pub struct Deck {
     pub id: Uuid,
     pub name: String,

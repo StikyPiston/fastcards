@@ -3,6 +3,7 @@ use clap::{Parser, Subcommand};
 mod models;
 mod scheduler;
 mod storage;
+mod tui;
 
 mod add_cmd;
 mod amount_cmd;
@@ -12,6 +13,7 @@ mod archive_remove_cmd;
 mod create_cmd;
 mod import_cmd;
 mod list_cmd;
+mod study_cmd;
 mod xp_cmd;
 
 static VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -78,7 +80,7 @@ fn main() {
         Commands::Create { name } => create_cmd::create(name.clone()),
         Commands::Import { path } => import_cmd::import(path.clone()),
         Commands::List {} => list_cmd::list(),
-        Commands::Study { deck } => todo!(),
+        Commands::Study { deck } => study_cmd::study(deck.clone()),
         Commands::Xp {} => xp_cmd::xp(),
     }
 }
