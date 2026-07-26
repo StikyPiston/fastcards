@@ -6,6 +6,7 @@ use std::process::exit;
 use uuid::Uuid;
 
 pub fn add(deck: String, front: String, back: String) {
+    let deck = deck + ".json";
     let (dx, err) = load_deck(deck.clone());
     let mut d: Deck;
     if err {
