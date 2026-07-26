@@ -74,13 +74,13 @@ fn main() {
         Commands::Amount { deck } => amount_cmd::amount(deck.clone()),
         Commands::Archive { command } => match command {
             ArchiveCommands::Add { deck } => archive_add_cmd::add(deck.clone()),
-            ArchiveCommands::List {} => archive_list_cmd::list(),
+            ArchiveCommands::List => archive_list_cmd::list(),
             ArchiveCommands::Remove { deck } => archive_remove_cmd::remove(deck.clone()),
         },
         Commands::Create { name } => create_cmd::create(name.clone()),
         Commands::Import { path } => import_cmd::import(path.clone()),
-        Commands::List {} => list_cmd::list(),
+        Commands::List => list_cmd::list(),
         Commands::Study { deck } => study_cmd::study(deck.clone()),
-        Commands::Xp {} => xp_cmd::xp(),
+        Commands::Xp => xp_cmd::xp(),
     }
 }

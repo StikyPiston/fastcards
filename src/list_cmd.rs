@@ -15,18 +15,18 @@ pub fn list() {
 
     for name in names {
         let (d, err) = load_deck(name.clone());
-        let deck: Deck;
+        
         if err {
             println!("Failed to load decks");
             exit(1);
         }
-        match d {
-            Some(d) => deck = d,
+        let deck: Deck = match d {
+            Some(d) => d,
             None => {
                 println!("Failed to load decks");
                 exit(1);
             }
-        }
+        };
 
         let total = deck.cards.len();
 

@@ -16,7 +16,7 @@ pub fn run(
     msg: String,
 ) -> bool {
     let mut app = App::new(deck_name, front, back, idx, total, msg);
-    let _ = ratatui::run(|terminal| app.run(terminal));
+    ratatui::run(|terminal| app.run(terminal));
 
     app.succeeded
 }
@@ -44,14 +44,14 @@ impl App {
     ) -> Self {
         Self {
             running: true,
-            deck_name: deck_name,
-            front: front,
-            back: back,
+            deck_name,
+            front,
+            back,
             revealed: false,
             succeeded: false,
-            idx: idx,
-            total: total,
-            msg: msg,
+            idx,
+            total,
+            msg,
         }
     }
 
@@ -127,8 +127,8 @@ impl App {
     }
 
     pub fn keybinds(&mut self) {
-        if let Event::Key(key) = event::read().unwrap() {
-            if key.kind == KeyEventKind::Press {
+        if let Event::Key(key) = event::read().unwrap()
+            && key.kind == KeyEventKind::Press {
                 match key.code {
                     KeyCode::Esc => self.running = false,
                     KeyCode::Enter if !self.revealed => self.revealed = true,
@@ -143,6 +143,5 @@ impl App {
                     _ => (),
                 }
             }
-        }
     }
 }

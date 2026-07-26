@@ -3,7 +3,6 @@ use std::{
     path::PathBuf,
 };
 
-use dirs;
 use uuid::Uuid;
 
 use crate::models::{Deck, Xp};
@@ -121,7 +120,7 @@ pub fn create_deck(name: String) -> String {
 pub fn save_xp(xp: u32) {
     ensure_dirs();
 
-    let x = Xp { xp: xp };
+    let x = Xp { xp };
 
     match serde_json::to_string_pretty(&x) {
         Ok(json) => write(xp_path(), json).unwrap(),

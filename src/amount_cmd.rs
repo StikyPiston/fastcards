@@ -27,10 +27,7 @@ pub fn amount(deck: Option<String>) {
             let names = list_deck_names();
             for name in names {
                 let (d, _) = load_deck(name.clone());
-                match d {
-                    Some(d) => decks.push(d),
-                    None => (),
-                }
+                if let Some(d) = d { decks.push(d) }
             }
         }
     }

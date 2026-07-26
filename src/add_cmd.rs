@@ -23,8 +23,8 @@ pub fn add(deck: String, front: String, back: String) {
 
     let card = Card {
         id: Uuid::new_v4(),
-        front: front,
-        back: back,
+        front,
+        back,
         state: 1,
         last_reviewed: None,
     };
