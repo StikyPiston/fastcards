@@ -13,7 +13,7 @@ pub fn study(deck: Option<String>) {
 
     match deck {
         Some(dx) => {
-            let (d, _) = load_deck(dx);
+            let (d, _) = load_deck(dx + ".json");
             match d {
                 Some(d) => decks.push(d),
                 None => {
