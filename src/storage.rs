@@ -52,6 +52,7 @@ pub fn save_deck(deck: &Deck) -> bool {
 }
 
 pub fn load_deck(name: String) -> (Option<Deck>, bool) {
+    ensure_dirs();
     let deck: Option<Deck> = read_to_string(deck_path(name))
         .ok()
         .and_then(|s| serde_json::from_str(&s).ok());
@@ -63,6 +64,7 @@ pub fn load_deck(name: String) -> (Option<Deck>, bool) {
 }
 
 pub fn list_deck_names() -> Vec<String> {
+    ensure_dirs();
     let dir = decks_dir();
     let entries = read_dir(dir).unwrap();
 
@@ -82,6 +84,7 @@ pub fn list_deck_names() -> Vec<String> {
 }
 
 pub fn list_archived_deck_names() -> Vec<String> {
+    ensure_dirs();
     let dir = archive_dir();
     let entries = read_dir(dir).unwrap();
 
@@ -101,6 +104,7 @@ pub fn list_archived_deck_names() -> Vec<String> {
 }
 
 pub fn create_deck(name: String) -> String {
+    ensure_dirs();
     let path = deck_path(name.clone() + ".json");
 
     if !path.exists() {
@@ -129,10 +133,11 @@ pub fn save_xp(xp: u32) {
 }
 
 pub fn load_xp() -> u32 {
+    ensure_dirs();
     let xp: Xp = read_to_string(xp_path())
         .ok()
         .and_then(|s| serde_json::from_str(&s).ok())
-        .unwrap();
+        .unwrap_or(Xp { xp: 0 });
 
     xp.xp
 }
