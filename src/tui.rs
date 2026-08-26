@@ -1,10 +1,10 @@
 use ratatui::{
+    DefaultTerminal, Frame,
     crossterm::event::{self, Event, KeyCode, KeyEventKind},
     layout::{Constraint, Direction, Layout},
     style::{Color, Style, Stylize},
     text::Line,
     widgets::{Block, BorderType, Borders, Paragraph, Wrap},
-    DefaultTerminal, Frame,
 };
 
 pub fn run(
@@ -110,7 +110,9 @@ impl App {
                 Paragraph::new(self.back.clone())
                     .block(
                         Block::default()
-                            .title_bottom(Line::from(" <y> correct | <n> incorrect ").right_aligned())
+                            .title_bottom(
+                                Line::from(" <y> correct | <n> incorrect ").right_aligned(),
+                            )
                             .borders(Borders::ALL)
                             .border_style(Style::default().fg(Color::Cyan))
                             .border_type(BorderType::Double),
@@ -132,20 +134,21 @@ impl App {
 
     pub fn keybinds(&mut self) {
         if let Event::Key(key) = event::read().unwrap()
-            && key.kind == KeyEventKind::Press {
-                match key.code {
-                    KeyCode::Esc => self.running = false,
-                    KeyCode::Enter if !self.revealed => self.revealed = true,
-                    KeyCode::Char('y') if self.revealed => {
-                        self.succeeded = true;
-                        self.running = false;
-                    }
-                    KeyCode::Char('n') if self.revealed => {
-                        self.succeeded = false;
-                        self.running = false;
-                    }
-                    _ => (),
+            && key.kind == KeyEventKind::Press
+        {
+            match key.code {
+                KeyCode::Esc => self.running = false,
+                KeyCode::Enter if !self.revealed => self.revealed = true,
+                KeyCode::Char('y') if self.revealed => {
+                    self.succeeded = true;
+                    self.running = false;
                 }
+                KeyCode::Char('n') if self.revealed => {
+                    self.succeeded = false;
+                    self.running = false;
+                }
+                _ => (),
             }
+        }
     }
 }
