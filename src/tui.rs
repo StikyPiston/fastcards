@@ -3,7 +3,7 @@ use ratatui::{
     layout::{Constraint, Direction, Layout},
     style::{Color, Style, Stylize},
     text::Line,
-    widgets::{Block, BorderType, Borders, Paragraph},
+    widgets::{Block, BorderType, Borders, Paragraph, Wrap},
     DefaultTerminal, Frame,
 };
 
@@ -69,7 +69,7 @@ impl App {
     pub fn draw(&mut self, frame: &mut Frame) {
         let area = frame
             .area()
-            .centered(Constraint::Percentage(70), Constraint::Percentage(25));
+            .centered(Constraint::Percentage(70), Constraint::Percentage(30));
 
         let master_layout = Layout::default()
             .direction(Direction::Vertical)
