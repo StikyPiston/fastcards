@@ -93,25 +93,29 @@ impl App {
         );
 
         frame.render_widget(
-            Paragraph::new(self.front.clone()).block(
-                Block::default()
-                    .title_top(" ".to_string() + &self.deck_name + " ")
-                    .borders(Borders::ALL)
-                    .border_style(Style::default().fg(Color::Green))
-                    .border_type(BorderType::Double),
-            ),
+            Paragraph::new(self.front.clone())
+                .block(
+                    Block::default()
+                        .title_top(" ".to_string() + &self.deck_name + " ")
+                        .borders(Borders::ALL)
+                        .border_style(Style::default().fg(Color::Green))
+                        .border_type(BorderType::Double),
+                )
+                .wrap(Wrap { trim: true }),
             card_layout[0],
         );
 
         match self.revealed {
             true => frame.render_widget(
-                Paragraph::new(self.back.clone()).block(
-                    Block::default()
-                        .title_bottom(Line::from(" <y> correct | <n> incorrect ").right_aligned())
-                        .borders(Borders::ALL)
-                        .border_style(Style::default().fg(Color::Cyan))
-                        .border_type(BorderType::Double),
-                ),
+                Paragraph::new(self.back.clone())
+                    .block(
+                        Block::default()
+                            .title_bottom(Line::from(" <y> correct | <n> incorrect ").right_aligned())
+                            .borders(Borders::ALL)
+                            .border_style(Style::default().fg(Color::Cyan))
+                            .border_type(BorderType::Double),
+                    )
+                    .wrap(Wrap { trim: true }),
                 card_layout[1],
             ),
             false => frame.render_widget(
