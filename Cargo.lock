@@ -558,7 +558,7 @@ checksum = "dd2e7510819d6fbf51a5545c8f922716ecfb14df168a3242f7d33e0239efe6a1"
 
 [[package]]
 name = "fastcards"
-version = "2.0.2"
+version = "2.0.3"
 dependencies = [
  "chrono",
  "clap",
